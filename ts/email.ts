@@ -17,10 +17,15 @@ function getHost(href: string): string {
 
 
 function shouldIgnoreLink(link: HTMLAnchorElement): boolean {
-  if (link.href.includes(".google.com")) {
+  if (link.href.includes(".google.com") && !link.href.includes(".docs.google.com")) {
     return true 
   }
   if (link.text === "") {
+    return true
+  }
+  console.log(link.text, link.href)
+  console.log(link.closest('div[g_editable="true"]'))
+  if (link.closest('div[g_editable="true"]') !== null) {
     return true
   }
   return false 
@@ -37,7 +42,6 @@ function modifyLinks() {
     const href = e.href
     const text = e.text
 
- 
     // TODO: add some sort of uniformization of links so silly link rewriting doesn't happen
     // example, https://google.com doesn't need to be rewritten to google.com.
     e.addEventListener('mouseover', function() {
@@ -48,6 +52,7 @@ function modifyLinks() {
     })
 
     if (urlRegex.test(text) && isLinkSketchy(e)) {
+      e.style.border = "1px solid red"
       e.style.color = "red"
     }
   }
@@ -58,4 +63,4 @@ function modifyLinks() {
 // 1a. show where hyperlinked text resolves to [done]
 // 2. Notify if the sender is not from your org
 // 3. highlight known malicious sites
-// 4. don't highlight links in composer?
+// 4. don't highlight links in composer [done]

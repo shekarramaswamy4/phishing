@@ -1,4 +1,4 @@
-window.addEventListener('hashchange', () => modifyLinks())
+window.addEventListener('mousemove', () => modifyLinks())
 
 const urlRegex = /^((https?|ftp|smtp):\/\/)?(www.)?[a-z0-9]+(\.[a-z]{2,}){1,3}(#?\/?[a-zA-Z0-9#]+)*\/?(\?[a-zA-Z0-9-_]+=[a-zA-Z0-9-%]+&?)?$/
 
@@ -40,7 +40,14 @@ function modifyLinks() {
     if (shouldIgnoreLink(e)) continue
 
     const href = e.href
-    const text = e.text
+
+    let text = e.text
+    const storedText = e.getAttribute("ogText");
+    if (storedText === null) {
+      e.setAttribute("ogText", text)
+    } else {
+      text = storedText
+    }
 
     // TODO: add some sort of uniformization of links so silly link rewriting doesn't happen
     // example, https://google.com doesn't need to be rewritten to google.com.

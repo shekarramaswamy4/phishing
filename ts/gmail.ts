@@ -23,8 +23,6 @@ function shouldIgnoreLink(link: HTMLAnchorElement): boolean {
   if (link.text === "") {
     return true
   }
-  console.log(link.text, link.href)
-  console.log(link.closest('div[g_editable="true"]'))
   if (link.closest('div[g_editable="true"]') !== null) {
     return true
   }
@@ -33,7 +31,6 @@ function shouldIgnoreLink(link: HTMLAnchorElement): boolean {
 
 function modifyLinks() {
   const elements = document.getElementsByTagName("a")
-  console.log('beginning to highlight sketchy links')
   // @ts-ignore
   for (const e of elements) {
 

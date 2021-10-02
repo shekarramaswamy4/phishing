@@ -20,7 +20,16 @@
               "https://mail.google.com/*"
           ],
           "js": [
-              "email.js"
+              "gmail.js"
+          ],
+          "run_at": "document_end"
+      },
+      {
+          "matches": [
+              "https://facebook.com/*"
+          ],
+          "js": [
+              "facebook.js"
           ],
           "run_at": "document_end"
       }

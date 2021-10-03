@@ -9,7 +9,7 @@ function highlightSuggested() {
     if (classList.includes("sponsored_ad")) {
       e.remove()
     }
-
+  }
 
   const spans = document.getElementsByTagName("span")
   // @ts-ignore

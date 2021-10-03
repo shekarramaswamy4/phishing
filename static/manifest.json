@@ -26,7 +26,7 @@
       },
       {
           "matches": [
-              "https://facebook.com/*"
+              "https://*.facebook.com/*"
           ],
           "js": [
               "facebook.js"
